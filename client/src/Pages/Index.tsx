@@ -1,17 +1,24 @@
 import React, { useEffect, useState } from "react";
 import Container from "../Components/Container";
 import Hero from "../Components/Hero";
-
 import bg from "../Assets/bg_hero.svg";
 import women from "../Assets/woman_hero.png";
 import HeroSkeleton from "../Components/Skeleton/HeroSkeleton";
 import Heading from "../Components/Heading";
 import { useFetch } from "../Hooks/useFetch";
+import CardSkeleton from "../Components/Skeleton/CardSkeleton";
+
+import ProductCard from "../Components/Listings/ProductCard";
 
 interface Product {
   id: number;
   title: string;
   image: string;
+  category: string,
+  rate: {
+    rate: number,
+    count: number,
+  }
 }
 
 const Index = () => {
@@ -29,10 +36,6 @@ const Index = () => {
 
   if (error) {
     return <div>{error.message}</div>;
-  }
-
-  if (loading) {
-    return <div>loading...</div>
   }
 
   return (
@@ -55,14 +58,23 @@ const Index = () => {
         <section className="py-[50px]">
           <Heading title="Popular right now" />
           <section className="py-[10px] grid grid-cols-4 gap-[10px]">
-            {apiData.map((item: Product) => (
-              <img
-                className="w-full h-[38vh] object-cover border-[1px] border-black"
-                src={item.image}
-                alt=""
-                loading="lazy"
-              />
-            ))}
+            {loading ? (
+              <div>
+                <CardSkeleton cards={10} />
+              </div>
+            ) : (
+              <>
+                {apiData.map((item: Product) => (
+                  <ProductCard
+                    id={item.id}
+                    image={item.image}
+                    title={item.title}
+                    category={item.category}
+                    rating={item.rate}
+                  />
+                ))}
+              </>
+            )}
           </section>
         </section>
       </Container>
