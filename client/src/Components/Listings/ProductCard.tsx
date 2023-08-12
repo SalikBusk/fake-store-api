@@ -1,24 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import StarRating from "./StarRating"; // Import the StarRating component
 
 interface ProductCardProps {
   id: number;
   image: string;
   title: string;
+  price: number,
   category?: string;
-  rating: {
-    rate: number;
-    count: number;
-  };
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
   id,
   image,
   title,
-  category,
-  rating,
+  price,
 }) => {
 
   return (
@@ -54,6 +49,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
               <span className="font-bold hover:text-blue-600">Brand:</span>{" "}
               {title.length > 35 ? title.slice(0, 35) + "..." : title}
             </p>
+          </div>
+          <div>
+            <p>$ {price}</p>
           </div>
         </div>
       </figcaption>

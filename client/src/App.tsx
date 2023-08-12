@@ -6,6 +6,7 @@ import { SkeletonTheme } from 'react-loading-skeleton';
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Navbar from "./Components/Navbar/Navbar";
 import Index from "./Pages/Index";
+import ProductPage from "./Pages/SinglePage/ProductPage";
 
 const Layout = () => {
   return (
@@ -27,6 +28,12 @@ const router = createBrowserRouter([
           <Index/>
         ),
       },
+      {
+        path: "/product/:id",
+        element: (
+          <ProductPage/>
+        ),
+      }
     ],
   },
 ]);

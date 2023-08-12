@@ -18,12 +18,9 @@ import women from "../Assets/woman_hero.png";
 interface Product {
   id: number;
   title: string;
+  price: number,
   image: string;
   category: string,
-  rate: {
-    rate: number,
-    count: number,
-  }
 }
 
 const Index = () => {
@@ -34,7 +31,7 @@ const Index = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 1500);
+    }, 1000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -75,7 +72,7 @@ const Index = () => {
                     image={item.image}
                     title={item.title}
                     category={item.category}
-                    rating={item.rate}
+                    price={item.price}
                   />
                 ))}
               </div>
